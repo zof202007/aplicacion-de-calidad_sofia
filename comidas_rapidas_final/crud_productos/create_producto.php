@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="/comidas_rapidas_final/css/productos.css">
-<div class="container">
 <?php
-require "../includes/db.php";
+
+use App\Database\Conexion;
+
+$pdo = Conexion::conectar();
 
 $tipos = $pdo->query("SELECT * FROM tipos")->fetchAll();
 
@@ -22,23 +23,29 @@ if ($_POST) {
 }
 ?>
 
-<h2>Nuevo Producto</h2>
+<link rel="stylesheet" href="/comidas_rapidas_final/css/productos.css">
 
-<form method="POST" enctype="multipart/form-data">
-    <input type="text" name="nombre" placeholder="Nombre" required><br><br>
-    <textarea name="descripcion" placeholder="Descripción"></textarea><br><br>
-    <input type="number" step="0.01" name="precio" placeholder="Precio" required><br><br>
+<div class="container">
 
-    <select name="tipo_id" required>
-        <option value="">Seleccione Tipo</option>
-        <?php foreach ($tipos as $t): ?>
-            <option value="<?= $t["id"] ?>"><?= $t["nombre_tipo"] ?></option>
-        <?php endforeach; ?>
-    </select><br><br>
+    <h2>Nuevo Producto</h2>
 
-    <input type="file" name="imagen" required><br><br>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="text" name="nombre" placeholder="Nombre" required><br><br>
+        <textarea name="descripcion" placeholder="Descripción"></textarea><br><br>
+        <input type="number" step="0.01" name="precio" placeholder="Precio" required><br><br>
 
-    <button type="submit">Guardar</button>
-</form>
+        <select name="tipo_id" required>
+            <option value="">Seleccione Tipo</option>
+            <?php foreach ($tipos as $t): ?>
+                <option value="<?= $t["id"] ?>"><?= $t["nombre_tipo"] ?></option>
+            <?php endforeach; ?>
+        </select><br><br>
 
-<a href="admin_productos.php">⬅ Volver</a>
+        <input type="file" name="imagen" required><br><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="admin_productos.php">⬅ Volver</a>
+</div>
+
