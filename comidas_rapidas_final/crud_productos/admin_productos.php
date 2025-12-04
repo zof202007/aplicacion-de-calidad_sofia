@@ -26,7 +26,8 @@ $productos = $sql->fetchAll();
 
 <a href="create_producto.php">➕ Agregar Producto</a><br><br>
 
-<table border="1" cellpadding="5">
+<table border="1">
+
     <tr>
         <th>ID</th>
         <th>Nombre</th>
