@@ -1,11 +1,12 @@
 <?php
-namespace App\Database;
+$host = "localhost";
+$db = "comidas_rapidas";
+$user = "root";
+$pass = "";
 
-use PDO;
-
-class Conexion {
-    public static function conectar() {
-        return new PDO("mysql:host=localhost;dbname=fastfood", "root", "");
-    }
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
-
+?>
