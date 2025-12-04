@@ -7,7 +7,7 @@ if (!isset($_SESSION["usuario"])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title>Panel Administrador</title>
     <link rel="stylesheet" href="/comidas_rapidas_final/css/dashboard.css">
@@ -47,4 +47,6 @@ if (!isset($_SESSION["usuario"])) {
 
 </body>
 </html>
+
+
 
