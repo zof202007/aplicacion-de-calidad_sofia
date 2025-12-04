@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="/comidas_rapidas_final/css/tipos.css">
-<div class="container">
 <?php
-require "../includes/db.php";
+
+use App\Database\Conexion;
+
+$pdo = Conexion::conectar();
 
 if ($_POST) {
     $nombre = $_POST["nombre"];
@@ -10,9 +11,14 @@ if ($_POST) {
         $sql = $pdo->prepare("INSERT INTO tipos (nombre_tipo) VALUES (?)");
         $sql->execute([$nombre]);
         header("Location: index.php");
+        exit();
     }
 }
 ?>
+
+<link rel="stylesheet" href="/comidas_rapidas_final/css/tipos.css">
+
+<div class="container">
 
 <h2>Agregar Tipo</h2>
 
@@ -24,3 +30,6 @@ if ($_POST) {
 
 <br>
 <a href="index.php">⬅ Volver</a>
+
+</div>
+
