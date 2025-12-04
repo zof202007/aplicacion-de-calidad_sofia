@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="/comidas_rapidas_final/css/productos.css">
-<div class="container">
 <?php
-require "../includes/db.php";
+
+use App\Database\Conexion;
+
+$pdo = Conexion::conectar();
 
 $id = $_GET["id"];
 $p = $pdo->prepare("SELECT * FROM productos WHERE id=?");
@@ -22,23 +23,28 @@ if ($_POST) {
     header("Location: admin_productos.php");
 }
 ?>
+<link rel="stylesheet" href="/comidas_rapidas_final/css/productos.css">
 
-<h2>Editar Producto</h2>
+<div class="container">
 
-<form method="POST">
-    <input type="text" name="nombre" value="<?= $producto["nombre"] ?>" required><br><br>
-    <textarea name="descripcion"><?= $producto["descripcion"] ?></textarea><br><br>
-    <input type="number" step="0.01" name="precio" value="<?= $producto["precio"] ?>" required><br><br>
+    <h2>Editar Producto</h2>
 
-    <select name="tipo_id">
-        <?php foreach ($tipos as $t): ?>
-            <option value="<?= $t["id"] ?>" <?= $t["id"] == $producto["tipo_id"] ? 'selected' : '' ?>>
-                <?= $t["nombre_tipo"] ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br><br>
+    <form method="POST">
+        <input type="text" name="nombre" value="<?= $producto["nombre"] ?>" required><br><br>
+        <textarea name="descripcion"><?= $producto["descripcion"] ?></textarea><br><br>
+        <input type="number" step="0.01" name="precio" value="<?= $producto["precio"] ?>" required><br><br>
 
-    <button type="submit">Actualizar</button>
-</form>
+        <select name="tipo_id">
+            <?php foreach ($tipos as $t): ?>
+                <option value="<?= $t["id"] ?>" <?= $t["id"] == $producto["tipo_id"] ? 'selected' : '' ?>>
+                    <?= $t["nombre_tipo"] ?>
+                </option>
+            <?php endforeach; ?>
+        </select><br><br>
 
-<a href="admin_productos.php">⬅ Volver</a>
+        <button type="submit">Actualizar</button>
+    </form>
+
+    <a href="admin_productos.php">⬅ Volver</a>
+</div>
+
