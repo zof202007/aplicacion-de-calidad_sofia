@@ -1,12 +1,26 @@
 <?php
-$host = "localhost";
-$db = "comidas_rapidas";
-$user = "root";
-$pass = "";
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+namespace App\Database;
+
+use PDO;
+use PDOException;
+
+class Conexion {
+
+    public static function conectar() {
+
+        $host = "localhost";
+        $db = "comidas_rapidas";
+        $user = "root";
+        $pass = "";
+
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+            return $pdo;
+        } catch (PDOException $e) {
+            die("Error de conexión: " . $e->getMessage());
+        }
+
+    }
 }
-?>
+
